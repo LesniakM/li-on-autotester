@@ -1,0 +1,183 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 2
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L YAAJ_BluePill_Part_like:YAAJ_BluePill_Part_Like U?
+U 1 1 6414E795
+P 2550 2450
+F 0 "U?" H 2550 3615 50  0000 C CNN
+F 1 "YAAJ_BluePill_Part_Like" H 2550 3524 50  0000 C CNN
+F 2 "" H 3250 1450 50  0001 C CNN
+F 3 "" H 3250 1450 50  0001 C CNN
+	1    2550 2450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Motor:Motor_Servo M?
+U 1 1 641528B3
+P 5300 2600
+F 0 "M?" H 5632 2665 50  0000 L CNN
+F 1 "Motor_Servo" H 5632 2574 50  0000 L CNN
+F 2 "" H 5300 2410 50  0001 C CNN
+F 3 "http://forums.parallax.com/uploads/attachments/46831/74481.png" H 5300 2410 50  0001 C CNN
+	1    5300 2600
+	1    0    0    -1  
+$EndComp
+$Sheet
+S 8800 2900 1050 1300
+U 6415845A
+F0 "INA226_module" 50
+F1 "ina226_module.sch" 50
+F2 "VCC" I L 8800 4100 50 
+F3 "IN+" I L 8800 3050 50 
+F4 "IN_" I L 8800 3200 50 
+F5 "VBUS" I L 8800 3350 50 
+F6 "ALERT" I L 8800 3500 50 
+F7 "SDA" I L 8800 3650 50 
+F8 "SCL" I L 8800 3800 50 
+F9 "GND" I L 8800 3950 50 
+F10 "IN+" I R 9850 3400 50 
+F11 "IN-" I R 9850 3750 50 
+$EndSheet
+Text GLabel 8700 3650 0    50   Input ~ 0
+SDA
+Text GLabel 8700 3800 0    50   Input ~ 0
+SCL
+Wire Wire Line
+	8700 3650 8800 3650
+Wire Wire Line
+	8700 3800 8800 3800
+Text GLabel 1600 2950 0    50   Input ~ 0
+SDA
+Text GLabel 1600 2850 0    50   Input ~ 0
+SCL
+Wire Wire Line
+	1600 2950 1750 2950
+Wire Wire Line
+	1600 2850 1750 2850
+$Comp
+L power:GND #PWR?
+U 1 1 641A9290
+P 1350 3650
+F 0 "#PWR?" H 1350 3400 50  0001 C CNN
+F 1 "GND" H 1355 3477 50  0000 C CNN
+F 2 "" H 1350 3650 50  0001 C CNN
+F 3 "" H 1350 3650 50  0001 C CNN
+	1    1350 3650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 641AABA9
+P 8450 4250
+F 0 "#PWR?" H 8450 4000 50  0001 C CNN
+F 1 "GND" H 8455 4077 50  0000 C CNN
+F 2 "" H 8450 4250 50  0001 C CNN
+F 3 "" H 8450 4250 50  0001 C CNN
+	1    8450 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 641AAF79
+P 4850 2850
+F 0 "#PWR?" H 4850 2600 50  0001 C CNN
+F 1 "GND" H 4855 2677 50  0000 C CNN
+F 2 "" H 4850 2850 50  0001 C CNN
+F 3 "" H 4850 2850 50  0001 C CNN
+	1    4850 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 2700 4850 2700
+Wire Wire Line
+	4850 2700 4850 2850
+Wire Wire Line
+	1750 3350 1350 3350
+Wire Wire Line
+	1350 3350 1350 3650
+Wire Wire Line
+	8800 3950 8450 3950
+Wire Wire Line
+	8450 3950 8450 4250
+Text GLabel 4850 2600 0    50   Input ~ 0
+5V
+Wire Wire Line
+	4850 2600 5000 2600
+Text GLabel 1600 3250 0    50   Input ~ 0
+5V
+Wire Wire Line
+	1600 3250 1750 3250
+Text GLabel 1600 3450 0    50   Input ~ 0
+3V3
+Wire Wire Line
+	1600 3450 1750 3450
+Text GLabel 8700 4100 0    50   Input ~ 0
+3V3
+Wire Wire Line
+	8700 4100 8800 4100
+$Comp
+L Device:Thermistor TH?
+U 1 1 641C6451
+P 4100 3300
+F 0 "TH?" H 4205 3346 50  0000 L CNN
+F 1 "Thermistor" H 4205 3255 50  0000 L CNN
+F 2 "" H 4100 3300 50  0001 C CNN
+F 3 "~" H 4100 3300 50  0001 C CNN
+	1    4100 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 641C6DAC
+P 4100 2850
+F 0 "R?" H 4170 2896 50  0000 L CNN
+F 1 "R" H 4170 2805 50  0000 L CNN
+F 2 "" V 4030 2850 50  0001 C CNN
+F 3 "~" H 4100 2850 50  0001 C CNN
+	1    4100 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 641C9751
+P 4100 3600
+F 0 "#PWR?" H 4100 3350 50  0001 C CNN
+F 1 "GND" H 4105 3427 50  0000 C CNN
+F 2 "" H 4100 3600 50  0001 C CNN
+F 3 "" H 4100 3600 50  0001 C CNN
+	1    4100 3600
+	1    0    0    -1  
+$EndComp
+Text GLabel 4250 2600 2    50   Input ~ 0
+3V3
+Wire Wire Line
+	4250 2600 4100 2600
+Wire Wire Line
+	4100 2600 4100 2700
+Wire Wire Line
+	4100 3100 4100 3050
+Wire Wire Line
+	3350 3050 4100 3050
+Connection ~ 4100 3050
+Wire Wire Line
+	4100 3050 4100 3000
+Wire Wire Line
+	5000 2500 3900 2500
+Wire Wire Line
+	3900 2500 3900 2550
+Wire Wire Line
+	3900 2550 3350 2550
+$EndSCHEMATC
