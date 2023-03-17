@@ -1,3 +1,5 @@
+Lib authors:
+
 https://github.com/yet-another-average-joe/Kicad-STM32/tree/master/Symbols
 YAAJ_BluePill_Part_like.lib
 
