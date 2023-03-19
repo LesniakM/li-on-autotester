@@ -1,35 +1,29 @@
 #include <servo_control.h>
+#include <pwms.h>
 #include <Arduino.h>
 
+#define servoMinPosCompare 1125
+#define servoMaxPosCompare 5625
+#define close_pos 0
+#define open_pos 100
 
-#ifdef BOARD_STM32F103C8
-  #include <Servo.h>
-  #define servoPin PA5
-  #define CONTROL_TYPE 1  // 1 for STM32F103, 2 for ESP32.
-#endif 
-#ifdef BOARD_ESP32C3
-  #include <ESP32Servo.h>
-  #include "esp32-hal-ledc.h"
-  #define servoPin 2
-  #define CONTROL_TYPE 2  // 1 for STM32F103, 2 for ESP32.
-#endif 
-
-#define close_pos 26
-#define open_pos 180
-Servo holder_servo;
+void setServoPos(uint8_t pos) {
+  if (0 <= pos <= 100){
+    uint16_t val_to_send = ((servoMaxPosCompare - servoMinPosCompare) * pos) / 100 + 1125;
+    changePWM(val_to_send);
+  }
+}
 
 void openHolder() {
-  holder_servo.attach(servoPin);
-  holder_servo.write(open_pos);
+  setServoPos(open_pos);
   delay(250);
-	holder_servo.detach();
+  changePWM(0);
 }
 
 void closeHolder() {
-  holder_servo.attach(servoPin);
-  holder_servo.write(close_pos);
+  setServoPos(close_pos);
   delay(250);
-	holder_servo.detach();
+  changePWM(0);
 }
 
 /*
