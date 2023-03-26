@@ -14,7 +14,7 @@ int pwm_dutycycle = 0;
 void setup(void)
 { 
   pinMode(PB13, OUTPUT);
-  digitalWrite(PB13, HIGH);
+  digitalWrite(PB13, LOW);
   setupTempSensor();
   setupDisplay();
   drawStaticDisplayElements();
@@ -22,8 +22,21 @@ void setup(void)
 }
 
 void loop(void)
-{ 
+{  
+  updateDisplayState(6);
   openHolder();
+  for (int i=0; i<1; i++) {
+    temperature = getTemperature(100);
+    voltage = getVoltage();
+    current = getCurrent();
+    updateDisplayVoltage(voltage);
+    updateDisplayCurrent(current);
+    updateDisplayTemperature(temperature);
+    updateDisplayState(3);
+    delay(250);
+  }
+  updateDisplayState(7);
+  closeHolder();
   for (int i=0; i<10; i++) {
     temperature = getTemperature(100);
     voltage = getVoltage();
@@ -31,16 +44,7 @@ void loop(void)
     updateDisplayVoltage(voltage);
     updateDisplayCurrent(current);
     updateDisplayTemperature(temperature);
-    delay(100);
-  }
-  //closeHolder();
-  for (int i=0; i<100; i++) {
-    temperature = getTemperature(100);
-    voltage = getVoltage();
-    current = getCurrent();
-    updateDisplayVoltage(voltage);
-    updateDisplayCurrent(current);
-    updateDisplayTemperature(temperature);
-    delay(100);
+    updateDisplayState(3);
+    delay(250);
   }
 }
