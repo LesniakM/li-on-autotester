@@ -4,26 +4,41 @@
 
 #define servoMinPosCompare 1125
 #define servoMaxPosCompare 5625
-#define close_pos 0
-#define open_pos 100
+#define close_pos 72
+#define open_pos 15
 
-void setServoPos(uint8_t pos) {
-  if (0 <= pos <= 100){
+
+void setServoPos(uint8_t servo, uint8_t pos) {
+  if (0 <= pos <= 100)
+  {
     uint16_t val_to_send = ((servoMaxPosCompare - servoMinPosCompare) * pos) / 100 + 1125;
-    changePWM(val_to_send);
+    switch (servo)
+    {
+    case 1:
+      changePWMdc(2, 2, val_to_send);
+      break;
+    case 2:
+      changePWMdc(2, 3, val_to_send);
+      break;
+    case 3:
+      changePWMdc(2, 4, val_to_send);
+      break;
+    default:
+      break;
+    }
   }
 }
 
 void openHolder() {
-  setServoPos(open_pos);
-  delay(250);
-  changePWM(0);
+  setServoPos(1, open_pos);
+  delay(500);
+  changePWMdc(2, 2, 0);
 }
 
 void closeHolder() {
-  setServoPos(close_pos);
-  delay(250);
-  changePWM(0);
+  setServoPos(1, close_pos);
+  delay(500);
+  changePWMdc(2, 2, 0);
 }
 
 /*
