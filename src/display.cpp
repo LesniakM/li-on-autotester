@@ -36,10 +36,12 @@
 #include <display.h>
 #include <Wire.h>
 
-#define CAPACITY_ROW 0
-#define VOLTAGE_ROW 1
-#define CURRENT_ROW 2
-#define TEMP_ROW 3
+constexpr uint8_t INFO_ROW = 0;
+constexpr uint8_t INFO_COL = 0;
+constexpr uint8_t CAPACITY_ROW = 0;
+constexpr uint8_t VOLTAGE_ROW = 1;
+constexpr uint8_t CURRENT_ROW = 2;
+constexpr uint8_t TEMP_ROW = 3;
 
 U8X8_SSD1306_128X32_UNIVISION_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE, /* clock=*/ SCL, /* data=*/ SDA);
 
@@ -50,10 +52,12 @@ void setupDisplay() {
 }
 
 void drawStaticDisplayElements() {
-  u8x8.drawString(0, CAPACITY_ROW,"Capaci: None mAh");
+  u8x8.drawString(0, CAPACITY_ROW,"    Cap: None mAh");
   u8x8.drawString(0, VOLTAGE_ROW, "Voltage:      mV");
   u8x8.drawString(0, CURRENT_ROW, "Current:      mA");
-  u8x8.drawString(0, TEMP_ROW,    "   Temp:");
+  u8x8.drawString(0, TEMP_ROW,    "01 Temp:");
+  u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
+  u8x8.drawString(0, TEMP_ROW,    "01 ");
 }
 
 void updateDisplayCapacity(uint16_t capacity) {
@@ -87,4 +91,56 @@ void updateDisplayTemperature(float temperature) {
   u8x8.drawString(15, TEMP_ROW, "C");
   u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
   u8x8.drawGlyph(14, TEMP_ROW, 176);
+}
+
+
+/**
+ * Prints state code on display.
+ *
+ * 0 - OK
+ * 1 - CHG
+ * 2 - DCH
+ * 3 - IDL
+ * 4 - IR
+ * 5 - II
+ * 6 - HOP
+ * 7 - HCL
+ * 99 - 
+ * default - ERR
+ */
+void updateDisplayState(uint8_t state) {
+  u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
+  switch (state)
+  {
+  case 0:
+    u8x8.drawString(INFO_COL, INFO_ROW, "OK ");
+    break;
+  case 1:
+    u8x8.drawString(INFO_COL, INFO_ROW, "CHG");
+    break;
+  case 2:
+    u8x8.drawString(INFO_COL, INFO_ROW, "DCH");
+    break;
+  case 3:
+    u8x8.drawString(INFO_COL, INFO_ROW, "IDL");
+    break;
+  case 4:
+    u8x8.drawString(INFO_COL, INFO_ROW, "IR ");
+    break;
+  case 5:
+    u8x8.drawString(INFO_COL, INFO_ROW, "II ");
+    break;
+  case 6:
+    u8x8.drawString(INFO_COL, INFO_ROW, "HOP");
+    break;
+  case 7:
+    u8x8.drawString(INFO_COL, INFO_ROW, "HCL");
+    break;
+  case 99:
+    u8x8.drawString(INFO_COL, INFO_ROW, "   ");
+    break;
+  default:
+    u8x8.drawString(INFO_COL, INFO_ROW, "ERR");
+    break;
+  }
 }
