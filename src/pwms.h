@@ -5,6 +5,6 @@
 
 void setupPWMs();
 
-void changePWM(uint16_t dc);
+void changePWMdc(uint8_t timer, uint8_t channel, uint16_t compareVal);
 
 #endif /* PWMS_H */
