@@ -31,9 +31,14 @@ int16_t _readIna226Register(uint8_t register_address)
  */
 uint16_t getVoltage()
 {
-    float value;
-    value = _readIna226Register(INA_BUS_VOLTAGE_REG)*BUS_VOLTAGE_MULTIPLER;
-    return (uint16_t)value;
+  int samples {20};
+  float value;
+  for (int i=0; i<samples; i++)
+  {    
+    value += _readIna226Register(INA_BUS_VOLTAGE_REG)*BUS_VOLTAGE_MULTIPLER;
+  }
+  value = value / samples;
+  return (uint16_t)value;
 }
 
 /**
@@ -42,8 +47,13 @@ uint16_t getVoltage()
  * @return Current value in [mA]
  */
 int16_t getCurrent()
-{
-    float value;
-    value = _readIna226Register(INA_BUS_CURRENT_REG)*BUS_CURRENT_MULTIPLER;
-    return (int16_t)value;
+{   
+  int samples {80};
+  float value;
+  for (int i=0; i<samples; i++)
+  {
+    value += _readIna226Register(INA_BUS_CURRENT_REG)*BUS_CURRENT_MULTIPLER;
+  }
+  value = value / samples;
+  return (int16_t)value;
 }
