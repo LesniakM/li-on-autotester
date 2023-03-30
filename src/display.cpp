@@ -52,42 +52,43 @@ void setupDisplay() {
 }
 
 void drawStaticDisplayElements() {
-  u8x8.drawString(0, CAPACITY_ROW,"    Cap: None mAh");
+  u8x8.drawString(0, CAPACITY_ROW,"     IR:    mOhm");
   u8x8.drawString(0, VOLTAGE_ROW, "Voltage:      mV");
   u8x8.drawString(0, CURRENT_ROW, "Current:      mA");
-  u8x8.drawString(0, TEMP_ROW,    "01 Temp:");
+  u8x8.drawString(0, TEMP_ROW,    "   Temp:");
   u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
-  u8x8.drawString(0, TEMP_ROW,    "01 ");
+  u8x8.drawString(0, TEMP_ROW,    "   ");
 }
 
 void updateDisplayCapacity(uint16_t capacity) {
   char scap[5];
   itoa(capacity, scap, 10);
   u8x8.setFont(u8x8_font_artossans8_r);
-  u8x8.drawString(9, CAPACITY_ROW, scap);
+  u8x8.drawString(9, CAPACITY_ROW, "   ");
+  u8x8.drawString(8, CAPACITY_ROW, scap);
 }
 
 void updateDisplayVoltage(uint16_t voltage) {
   char svolt[5];
   itoa(voltage, svolt, 10);
   u8x8.setFont(u8x8_font_artossans8_r);
-  u8x8.drawString(10, VOLTAGE_ROW, "   ");
-  u8x8.drawString(9, VOLTAGE_ROW, svolt);
+  u8x8.drawString(9, VOLTAGE_ROW, "    ");
+  u8x8.drawString(8, VOLTAGE_ROW, svolt);
 }
 
 void updateDisplayCurrent(int16_t current) {
   char scurr[5];
   itoa(current, scurr, 10);
   u8x8.setFont(u8x8_font_artossans8_r);
-  u8x8.drawString(10, CURRENT_ROW, "   ");
-  u8x8.drawString(9, CURRENT_ROW, scurr);
+  u8x8.drawString(9, CURRENT_ROW, "    ");
+  u8x8.drawString(8, CURRENT_ROW, scurr);
 }
 
 void updateDisplayTemperature(float temperature) {
   char stemp[6];
   dtostrf(temperature, 3, 1, stemp);
   u8x8.setFont(u8x8_font_artossans8_r);
-  u8x8.drawString(9, TEMP_ROW, stemp);
+  u8x8.drawString(8, TEMP_ROW, stemp);
   u8x8.drawString(15, TEMP_ROW, "C");
   u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
   u8x8.drawGlyph(14, TEMP_ROW, 176);
@@ -138,6 +139,30 @@ void updateDisplayState(uint8_t state) {
     break;
   case 99:
     u8x8.drawString(INFO_COL, INFO_ROW, "   ");
+    break;
+  case 101:
+    u8x8.drawString(INFO_COL, INFO_ROW, " I ");
+    break;
+  case 102:
+    u8x8.drawString(INFO_COL, INFO_ROW, "II ");
+    break;
+  case 103:
+    u8x8.drawString(INFO_COL, INFO_ROW, "III");
+    break;
+  case 104:
+    u8x8.drawString(INFO_COL, INFO_ROW, "IV ");
+    break;
+  case 105:
+    u8x8.drawString(INFO_COL, INFO_ROW, " V ");
+    break;
+  case 106:
+    u8x8.drawString(INFO_COL, INFO_ROW, " VI");
+    break;
+  case 107:
+    u8x8.drawString(INFO_COL, INFO_ROW, " ^ ");
+    break;
+  case 100:
+    u8x8.drawString(INFO_COL, INFO_ROW, " X ");
     break;
   default:
     u8x8.drawString(INFO_COL, INFO_ROW, "ERR");

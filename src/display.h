@@ -7,6 +7,8 @@ void setupDisplay();
 
 void drawStaticDisplayElements();
 
+void updateDisplayCapacity(uint16_t capacity);
+
 void updateDisplayTemperature(float temperature);
 
 void updateDisplayVoltage(uint16_t voltage);
