@@ -3,9 +3,14 @@
 
 #include <stdint.h>
 
-void openHolder();
+constexpr uint8_t close_pos {60};
+constexpr uint8_t open_pos {15};
 
-void closeHolder();
+void openHolder(uint8_t pos = open_pos);
+
+void closeHolderRouglhy(uint8_t pos = close_pos);
+
+void closeHolderTighter();
 
 void setServoPos(uint8_t servo, uint8_t pos);
 

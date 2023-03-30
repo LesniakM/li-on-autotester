@@ -4,8 +4,7 @@
 
 #define servoMinPosCompare 1125
 #define servoMaxPosCompare 5625
-#define close_pos 72
-#define open_pos 15
+uint8_t current_pos {50};
 
 
 void setServoPos(uint8_t servo, uint8_t pos) {
@@ -29,16 +28,29 @@ void setServoPos(uint8_t servo, uint8_t pos) {
   }
 }
 
-void openHolder() {
-  setServoPos(1, open_pos);
-  delay(500);
+void turnOffServoMotor() {
   changePWMdc(2, 2, 0);
 }
 
-void closeHolder() {
-  setServoPos(1, close_pos);
-  delay(500);
-  changePWMdc(2, 2, 0);
+void openHolder(uint8_t pos) {
+  setServoPos(1, pos);
+  delay(abs(current_pos-pos)*10+10);
+  current_pos = pos;
+  turnOffServoMotor();
+}
+
+void closeHolderRouglhy(uint8_t pos) {
+  setServoPos(1, pos);
+  delay(abs(current_pos-pos)*10+10);
+  current_pos = pos;
+  turnOffServoMotor();
+}
+
+void closeHolderTighter() {
+  current_pos++;
+  setServoPos(1, current_pos);
+  delay(30);
+  turnOffServoMotor();
 }
 
 /*
