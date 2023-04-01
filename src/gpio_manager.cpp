@@ -45,6 +45,12 @@ void GpioManager::disableDischarge()
   digitalWrite(enableDischargePin, _dischargeState);
 }
 
+void GpioManager::disableAll() 
+{ 
+  disableCharge();
+  disableDischarge(); 
+}
+
 bool GpioManager::getButtonState()
 {
   return digitalRead(buttonPin);

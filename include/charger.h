@@ -32,5 +32,4 @@ R3 - 4.7k
 C2 - 15nF
 */
 
-
 #endif /*CHARGER_H*/

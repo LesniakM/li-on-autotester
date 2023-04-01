@@ -12,6 +12,9 @@ Servo pwm overflow = 45000
 #define HOLDER_H
 
 #include <Arduino.h>
+#include <display.h>
+#include <gpio_manager.h>
+#include <ina226.h>
 #include <pwm_manager.h>
 
 constexpr uint8_t close_pos {100};
@@ -24,9 +27,11 @@ constexpr uint16_t servoMaxPosCompare {4500};
 class Holder
 {
 public:
-  Holder(PwmManager* pwmManager);
+  Holder(PwmManager* pwmManagerPtr, GpioManager* gpioPtr, OledDisplay* displayPtr);
   void open();
   void close();
+
+  bool closeWithCellSensing(uint16_t senseCurrent = 10);
 
   void prepareToClose();
   void closeABitMore();
@@ -38,6 +43,8 @@ private:
   void _setServoPos(uint8_t pos);
   uint8_t position;
   PwmManager* pwmMng;
+  GpioManager* gpio;
+  OledDisplay* display;
 };
 
 #endif

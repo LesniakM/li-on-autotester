@@ -15,6 +15,7 @@ public:
   void disableDischarge();
   void enableCharge();
   void disableCharge();
+  void disableAll(); 
   bool getButtonState();
   bool getChargeState();
   bool getDischargeState();

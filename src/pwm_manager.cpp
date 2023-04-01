@@ -6,8 +6,8 @@ HardwareTimer fast_timer(InstanceFast);
 HardwareTimer slow_timer(InstanceSlow);
 
 PwmManager::PwmManager(void) {
-  setupTimer(fast_timer, TIM3_PRESCALER, TIM3_OVERFLOW);
   setupTimer(slow_timer, TIM2_PRESCALER, TIM2_OVERFLOW);
+  setupTimer(fast_timer, TIM3_PRESCALER, TIM3_OVERFLOW);
 
   setupChannel(fast_timer, 1, FAST_PWM_CH_1);
   setupChannel(fast_timer, 2, FAST_PWM_CH_2);

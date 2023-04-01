@@ -17,27 +17,23 @@ void setup(void)
   RTC_MNG::initClockLSE();
   gpio = new GpioManager();
   pwmMng = new PwmManager();
-  holder = new Holder(pwmMng);
-  thermistor = new TempSensor();
   display = new OledDisplay();
+  holder = new Holder(pwmMng, gpio, display);
+  thermistor = new TempSensor();
+  
 
   display->drawStaticDisplayElements();
 
-  holder->setRawPos(3000);
-  delay(500);
-  holder->setRawPos(2000);
-  delay(500);
-  holder->setRawPos(0);
-
-  delay(1000);
-  holder->close();
-  holder->open();
-  holder->setRawPos(0);
+  for (int i=0; i<1; i++)
+  {
+    if (holder->closeWithCellSensing() == true) display->updateDisplayState(0);
+    else display->updateDisplayState(255);
+  }
 }
 
 void loop(void)
 { 
-
+/*
   // CODE BELOW IS OUTDATED AND USED TO TEST ONLY/
 
   //holder->close();
@@ -145,7 +141,9 @@ void loop(void)
       display->updateDisplayState(6);
       }
     //openHolder();
+    
   }
+  */
   temperature = thermistor->getTemperature(100);
   voltage = INA226::getVoltage();
   current = INA226::getCurrent();
