@@ -32,9 +32,7 @@
 
 */
 
-#include <U8x8lib.h>
 #include <display.h>
-#include <Wire.h>
 
 constexpr uint8_t INFO_ROW = 0;
 constexpr uint8_t INFO_COL = 0;
@@ -45,53 +43,53 @@ constexpr uint8_t TEMP_ROW = 3;
 
 U8X8_SSD1306_128X32_UNIVISION_HW_I2C u8x8(/* reset=*/ U8X8_PIN_NONE, /* clock=*/ SCL, /* data=*/ SDA);
 
-void setupDisplay() {
+OledDisplay::OledDisplay() {
   u8x8.begin();
   u8x8.clear();
-  u8x8.setFont(u8x8_font_artossans8_r);
+  drawStaticDisplayElements();
 }
 
-void drawStaticDisplayElements() {
+void OledDisplay::drawStaticDisplayElements() {
+  u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
   u8x8.drawString(0, CAPACITY_ROW,"     IR:    mOhm");
   u8x8.drawString(0, VOLTAGE_ROW, "Voltage:      mV");
   u8x8.drawString(0, CURRENT_ROW, "Current:      mA");
   u8x8.drawString(0, TEMP_ROW,    "   Temp:");
-  u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
   u8x8.drawString(0, TEMP_ROW,    "   ");
 }
 
-void updateDisplayCapacity(uint16_t capacity) {
+void OledDisplay::updateDisplayCapacity(uint16_t capacity) {
   char scap[5];
-  itoa(capacity, scap, 10);
   u8x8.setFont(u8x8_font_artossans8_r);
+  itoa(capacity, scap, 10);
   u8x8.drawString(9, CAPACITY_ROW, "   ");
   u8x8.drawString(8, CAPACITY_ROW, scap);
 }
 
-void updateDisplayVoltage(uint16_t voltage) {
+void OledDisplay::updateDisplayVoltage(uint16_t voltage) {
   char svolt[5];
-  itoa(voltage, svolt, 10);
   u8x8.setFont(u8x8_font_artossans8_r);
+  itoa(voltage, svolt, 10);
   u8x8.drawString(9, VOLTAGE_ROW, "    ");
   u8x8.drawString(8, VOLTAGE_ROW, svolt);
 }
 
-void updateDisplayCurrent(int16_t current) {
+void OledDisplay::updateDisplayCurrent(int16_t current) {
   char scurr[5];
-  itoa(current, scurr, 10);
   u8x8.setFont(u8x8_font_artossans8_r);
+  itoa(current, scurr, 10);
   u8x8.drawString(9, CURRENT_ROW, "    ");
   u8x8.drawString(8, CURRENT_ROW, scurr);
 }
 
-void updateDisplayTemperature(float temperature) {
+void OledDisplay::updateDisplayTemperature(float temperature) {
   char stemp[6];
-  dtostrf(temperature, 3, 1, stemp);
   u8x8.setFont(u8x8_font_artossans8_r);
+  dtostrf(temperature, 3, 1, stemp);
   u8x8.drawString(8, TEMP_ROW, stemp);
-  u8x8.drawString(15, TEMP_ROW, "C");
   u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
   u8x8.drawGlyph(14, TEMP_ROW, 176);
+  u8x8.drawString(15, TEMP_ROW, "C");
 }
 
 
@@ -109,8 +107,8 @@ void updateDisplayTemperature(float temperature) {
  * 99 - 
  * default - ERR
  */
-void updateDisplayState(uint8_t state) {
-  u8x8.setFont(u8x8_font_amstrad_cpc_extended_f);
+void OledDisplay::updateDisplayState(uint8_t state) {
+  u8x8.setFont(u8x8_font_artossans8_r);
   switch (state)
   {
   case 0:
