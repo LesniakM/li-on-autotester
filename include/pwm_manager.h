@@ -20,9 +20,9 @@ constexpr uint16_t FAST_PWM_CH_2 = PA7_ALT1;
 constexpr uint16_t FAST_PWM_CH_3 = PB0_ALT1;
 constexpr uint16_t FAST_PWM_CH_4 = PB1_ALT1;
 
-constexpr uint16_t TIM3_PRESCALER = 1;          // For max resolution and speed
+constexpr uint16_t TIM3_PRESCALER = 1;            // For max resolution and speed
 //constexpr uint16_t TIM3_OVERFLOW = 2047;        // 72MHZ / 2048 = 35156.25Hz
-constexpr uint16_t TIM3_OVERFLOW = 4095;      // 72MHZ / 4096 = 17578.125Hz
+constexpr uint16_t TIM3_OVERFLOW = 4095;          // 72MHZ / 4096 = 17578.125Hz
 
 constexpr uint16_t COMPARE_VAL_START = 0;
 
