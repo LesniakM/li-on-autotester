@@ -19,4 +19,10 @@ Holder* holder;
 TempSensor* thermistor;
 OledDisplay* display;
 
+void wait(uint16_t seconds);
+
+bool charge(uint16_t target_voltage=4200, uint16_t target_current=1000, uint16_t cutoff=50);
+
+void discharge(uint16_t cc_current=1000, uint16_t end_voltage=2500);
+
 #endif
