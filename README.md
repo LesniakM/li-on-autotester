@@ -1,4 +1,4 @@
-This project is no longer developed.
+Project in this repo is no longer developed. I switch frameworks and created new repo. More info below.
 
 This project was quite successful and the essential functions were completed:
   - Closed loop current/voltage control while cell charging in the CC/CV mode.
